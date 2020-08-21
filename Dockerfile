@@ -38,7 +38,7 @@ RUN phpenmod redis
 
 # Configure apache
 RUN a2enmod rewrite
-RUN a2enmod ssl
+#RUN a2enmod ssl
 RUN a2enmod proxy
 RUN a2enmod headers
 # optionally enable ssl on apache - however, ssl termination is intended to be done by jwilder/nginx-proxy instead
@@ -61,4 +61,5 @@ RUN echo "ModPagespeed on" > /etc/apache2/mods-available/pagespeed.conf
 EXPOSE 80
 #EXPOSE 443
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+#CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+RUN service apache2 start
