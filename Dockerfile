@@ -48,7 +48,7 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
 RUN a2dissite 000-default.conf
-COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ./conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default.conf
 #RUN service apache2 start
 
