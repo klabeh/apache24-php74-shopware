@@ -50,7 +50,12 @@ ENV APACHE_LOG_DIR /var/log/apache2
 RUN a2dissite 000-default.conf
 COPY ./conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default.conf
-#RUN service apache2 start
+
+# Add PageSpeed
+RUN wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb
+RUN dpkg -i mod-pagespeed-stable_current_amd64.deb
+RUN apt-get -f install
+RUN echo "ModPagespeed on" > /etc/apache2/mods-available/pagespeed.conf
 
 EXPOSE 80
 #EXPOSE 443
