@@ -38,6 +38,7 @@ RUN phpenmod redis
 
 # Configure apache
 RUN a2enmod rewrite
+RUN a2enmod expires
 #RUN a2enmod ssl
 RUN a2enmod proxy
 RUN a2enmod headers
