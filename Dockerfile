@@ -22,6 +22,7 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 #configure apache
 RUN ["bin/bash", "-c", "sed -i 's/AllowOverride None/AllowOverride All\\nSetEnvIf X-Forwarded-Proto https HTTPS=on/g' /etc/apache2/apache2.conf"]
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 RUN service apache2 stop
 
