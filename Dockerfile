@@ -56,10 +56,15 @@ RUN a2ensite 000-default.conf
 RUN wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb
 RUN dpkg -i mod-pagespeed-stable_current_amd64.deb
 RUN apt-get -f install
-RUN echo "ModPagespeed on" > /etc/apache2/mods-available/pagespeed.conf
+RUN echo "ModPagespeed Off" > /etc/apache2/mods-available/pagespeed.conf
+#RUN echo "ModPagespeedInheritVHostConfig on" >> /etc/apache2/mods-available/pagespeed.conf
+#RUN echo "ModPagespeedFileCachePath \"/var/cache/mod_pagespeed/\"" >> /etc/apache2/mods-available/pagespeed.conf
+#RUN echo "ModPagespeedEnableFilters combine_css,combine_javascript" >> /etc/apache2/mods-available/pagespeed.conf
+#RUN echo "# Direct Apache to send all HTML output to the mod_pagespeed" >> /etc/apache2/mods-available/pagespeed.conf
+#RUN echo "# output handler." > /etc/apache2/mods-available/pagespeed.conf
+#RUN echo "AddOutputFilterByType MOD_PAGESPEED_OUTPUT_FILTER text/html" > /etc/apache2/mods-available/pagespeed.conf
 
 EXPOSE 80
 #EXPOSE 443
 
-#CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
-RUN service apache2 start
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
